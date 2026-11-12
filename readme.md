@@ -1,14 +1,10 @@
 # 🤖 Nextcloud AI-Übersetzungsrichtlinien (EN ➡️ DE)
 
-Willkommen in unserem Repo! Wir sind drei deutsche Entwickler, die es sich zur Aufgabe gemacht haben, die Übersetzung des Nextcloud-Source-Codes durch Künstliche Intelligenz zu automatisieren und zu optimieren. 
-
-KI ist großartig im Übersetzen, aber sie halluziniert gerne mal, zerschießt Variablen oder übersetzt "Share" in einer Dateiverwaltung mit "Aktie". Damit unsere Nextcloud-Instanzen (und die der Community) nicht durch kaputte Sprachdateien crashen, haben wir dieses Manifest für KI-Prompts und automatisierte Übersetzungs-Pipelines aufgesetzt.
-
-Dieses Repository dient als "Single Source of Truth" für unsere KI-System-Prompts (LLMs wie GPT-4, Claude, etc.) im Nextcloud-Kontext.
+Dieses Repository soll als "Single Source of Truth" für KI-Übersetzungen im Nextcloud-Kontext dienen..
 
 ---
 
-## 📜 Die 5 Goldenen Regeln für Nextcloud KI-Übersetzungen
+## 📜 Die Regeln für Nextcloud KI-Übersetzungen
 
 ### 1. Variablen, Platzhalter & Code sind heilig
 Nextcloud nutzt in seinen `.json`-, `.po`- und `.js`/`.vue`-Dateien verschiedenste Platzhalter (z. B. `%s`, `%1$s`, `{user}`, `{0}`). KIs neigen dazu, diese "mitzuübersetzen" oder im Satzbau so zu verschieben, dass der Code bricht.
