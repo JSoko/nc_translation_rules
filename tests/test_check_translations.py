@@ -112,6 +112,30 @@ class RuleTests(unittest.TestCase):
     def test_master_slave_ignores_urls(self):
         self.assertNotIn("master-slave", codes("x", "![x](https://github.com/nextcloud/app/master/shot.png)"))
 
+    def test_group_folder(self):
+        self.assertIn("term", codes("Group folders encryption", "Verschlüsselung von Team-Ordnern"))
+        self.assertNotIn("term", codes("Group folders encryption", "Verschlüsselung von Gruppenordnern"))
+        self.assertNotIn("term", codes("No group folders or team folders yet", "Keine Gruppenordner oder Team-Ordner"))
+
+    def test_times(self):
+        self.assertIn("times", codes("Clicked {count} times", "{count} Mal angeklickt"))
+        self.assertIn("times", codes("Occurred %n times", "Trat %n Mal auf"))
+        self.assertIn("times", codes("3 times", "3 Mal"))
+        self.assertNotIn("times", codes("Occurred %n times", "Trat %n-mal auf"))
+        self.assertNotIn("times", codes("for the %n time", "zum %n. Mal"))
+        self.assertNotIn("times", codes("for the first time", "zum ersten Mal"))
+        self.assertNotIn("placeholder-spacing", codes("Occurred %n times", "Trat %n-mal auf"))
+
+    def test_wording(self):
+        self.assertIn("wording", codes("Users", "Nutzer"))
+        self.assertNotIn("wording", codes("Users", "Benutzer"))
+        self.assertIn("wording", codes("Contact your administrator", "Wende dich an deinen Administrator"))
+        self.assertIn("wording", codes("Contact your administrator", "Wende dich an deine Administratorin"))
+        self.assertNotIn("wording", codes("Contact your administrator", "Wende dich an deine Administration"))
+        self.assertNotIn("wording", codes("Error adding new administrator.", "Fehler beim Hinzufügen eines neuen Administrationskontos."))
+        self.assertNotIn("wording", codes("Mastodon people", "Mastodon-Nutzer"))
+        self.assertNotIn("wording", codes("for private users", "für Privatnutzer"))
+
     def test_informal_in_formal(self):
         self.assertIn("informal-in-formal", codes("x", "Gib dein Passwort ein", "formal"))
         self.assertNotIn("informal-in-formal", codes("x", "App deinstallieren", "formal"))

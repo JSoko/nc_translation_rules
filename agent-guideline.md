@@ -47,6 +47,9 @@ Typografie (4.2), Bindestriche (4.3), Wortwahl (4.4) und Anrede (4.1) gelten ohn
 * Anführungszeichen `"…"` statt `„…“`, auch wenn die Quelle `“…”` verwendet.
 * Geschütztes Leerzeichen in `z. B.`, vor `…` und zwischen Zahl und `%`, `°`, `€`.
 * `Achtung` statt `Warnung`, `einrichten` statt `konfigurieren` (außer beim technischen Vorgang), keine Füllwörter wie `wirklich` oder `erfolgreich`, die nicht in der Quelle stehen.
+* `Administration` statt `Administrator`/`Administratorin`, für ein einzelnes Konto `Administrationskonto`. `Benutzer` statt `Nutzer` und nicht `Benutzende`, aber nur für Nextcloud-Konten: `Privatnutzer`, `Mastodon-Konten` (readme 4.1).
+* `Gruppenordner` für "group folder" und `Team-Ordner` für "Team folder": zwei verschiedene Dinge.
+* `%n-mal`, `3-mal` statt `%n Mal`.
 
 ### 3.4 Prüfskript
 Vor jeder Übernahme läuft `tools/check_translations.py` mit der richtigen Variante. Jeder **Fehler** wird behoben. Jeder **Hinweis** wird entweder behoben oder in der Übergabe begründet (z. B. "die die" in einem Relativsatz ist korrekt).
@@ -70,8 +73,6 @@ Die Prüfberichte vom 13.11.2026 (de: 252, de_DE: 197 Fundstellen) zeigen, wo Ü
 | Kleinschreibung nach Klammer | `TOTP (Zeitbasiert)` | `TOTP (zeitbasiert)` |
 | Nominalisierung | `Importierung` | `Import` |
 | Interjektion | `Upps` | `Ups` |
-| Gender-Neutral | `Administrator, Administratorin` | `Administration` |
-| Wortvorgaben | `Nutzer` | `Benutzer` |
 
 Produkt- und App-Namen werden wie im Original geschrieben (`Nextcloud`, `Zammad`, `Discourse`, `Recognize`).
 

@@ -36,7 +36,11 @@ Die folgenden Regeln wurden in den Online-Treffen der deutschen Übersetzer besc
 * Die direkte Anrede wird wo sinnvoll möglich vermieden. *(M3, M5)*
   * `Do you want to delete this file?` ➡️ `Soll diese Datei gelöscht werden?` statt `Willst du …`/`Wollen Sie …`
 * Der Platzhalter "Hier wird nur de_DE verwendet" bleibt dem Übersetzer überlassen. Wird eine informelle Übersetzung angefertigt, darf sie **keine** formelle Anrede enthalten – kein Copy & Paste aus `de_DE`. *(M3)*
-* Geschlechtergerechte Sprache: Die bisherige Umsetzung bleibt unverändert. *(M2, M3)*
+* Geschlechtergerechte Sprache: Die bisherige Umsetzung bleibt unverändert. *(M2, M3)* Sie sieht so aus:
+  * Personen in einer Rolle werden über die Funktion benannt: `administrator` ➡️ `Administration` (nicht `Administrator`, `Administratorin` oder `Administrator*innen`).
+  * Ist ein einzelnes Konto oder eine Liste von Konten gemeint, steht `Administrationskonto`: `Error adding new administrator` ➡️ `Fehler beim Hinzufügen eines neuen Administrationskontos`.
+  * `user` ➡️ `Benutzer` (nicht `Nutzer`), wenn ein Konto in Nextcloud (auch LDAP oder SAML) gemeint ist. Partizipformen wie `Benutzende` werden nicht eingeführt.
+  * Andere Personen werden nicht zu "Benutzern": `private users` (Privatkundschaft) ➡️ `Privatnutzer`, `Mastodon people` ➡️ `Mastodon-Konten`.
 
 #### 4.2 Typografie
 * **Anführungszeichen** wie im Englischen: `"Hallo"` statt `„Hallo“`. *(M3)*
@@ -63,6 +67,10 @@ Die folgenden Regeln wurden in den Online-Treffen der deutschen Übersetzer besc
 | restrict | einschränken / beschränken | Entscheidung im Einzelfall, der Duden gibt keine klare Vorgabe | M4 |
 | paused | angehalten / pausiert | kein fester Begriff; bei Musik "pausiert" | M5 |
 | Smart Picker | Smart Picker | bleibt vorerst als Eigenname unübersetzt | M4 |
+| administrator | Administration | einzelnes Konto: "Administrationskonto", siehe 4.1 | M2, M3 |
+| user | Benutzer | nicht "Nutzer", nur für Nextcloud-Konten; Ausnahmen siehe 4.1 | M2, M3 |
+| group folder | Gruppenordner | eigenes Konzept neben "Team folder" ➡️ "Team-Ordner" (4.3), beide nicht vermischen | Bestand der App `groupfolders` |
+| *n* times | `%n-mal`, `3-mal`, ausgeschrieben `dreimal` | nicht `%n Mal`; als Nomen aber `zum %n. Mal`, `zum ersten Mal` | [Duden](https://www.duden.de/rechtschreibung/mal_zu_irgendeiner_Zeit) |
 
 #### 4.5 Offene Punkte
 Noch nicht entschieden, siehe [Meeting 6 – 19.01.2027](https://help.nextcloud.com/t/online-meeting-6-der-deutschen-ubersetzer-2027-01-19/250506):
@@ -96,7 +104,9 @@ python3 -m unittest discover -s tests
 | `quotes` | Fehler | keine deutschen Anführungszeichen |
 | `double-space` | Fehler | keine doppelten Leerzeichen |
 | `master-slave` | Fehler | keine Master/Slave-Formulierungen |
-| `term` | Fehler | Team-Ordner, Link-Vorschau |
+| `term` | Fehler | Team-Ordner, Link-Vorschau; "group folder" nicht als "Team-Ordner" |
+| `times` | Fehler | `%n-mal` statt `%n Mal` |
+| `wording` | Hinweis | "Benutzer" statt "Nutzer", wenn die Quelle "user" enthält; "Administration" bzw. "Administrationskonto" statt "Administrator(in)" |
 | `formal-in-informal` | Fehler | "Sie/Ihnen/Ihre" mitten im Satz in `de` |
 | `informal-in-formal` | Fehler | "du/dich/dein" in `de_DE` |
 | `filler` | Hinweis | "wirklich"/"erfolgreich" ohne Entsprechung in der Quelle |

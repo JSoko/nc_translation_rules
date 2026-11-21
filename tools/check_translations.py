@@ -184,6 +184,8 @@ _OLD_SPELLING = re.compile(
 
 _URL = re.compile(r"https?://\S+")
 
+_TIMES = re.compile(r"(?<!zum )(?<!zum )(?:\d+|%(?:\d+\$)?[dun]|\{[A-Za-z0-9_.-]+\})[  ]Mal\b")
+
 _FORMAL_WORD = re.compile(r"\b(Sie|Ihnen|Ihre[mnrs]?)\b")
 
 
@@ -254,6 +256,20 @@ def check_entry(entry: Entry, variant: str | None) -> Iterator[tuple[str, str, s
     for pattern, preferred in TERMS.items():
         if re.search(pattern, tgt):
             yield ERROR, "term", f"Schreibweise laut Beschluss: \"{preferred}\""
+    if (
+        re.search(r"(?i)\bgroup ?folders?\b", src)
+        and not re.search(r"(?i)\bteam ?folders?\b", src)
+        and re.search(r"Team-Ordner", tgt)
+    ):
+        yield ERROR, "term", "\"Group folder\" ist \"Gruppenordner\", nicht \"Team-Ordner\""
+
+    if _TIMES.search(tgt):
+        yield ERROR, "times", "Mit Ziffer oder Platzhalter \"-mal\" schreiben: \"%n-mal\", \"3-mal\""
+
+    if re.search(r"(?i)\busers?\b", src) and re.search(r"\b[Nn]utzer", tgt):
+        yield HINT, "wording", "\"Benutzer\" statt \"Nutzer\", wenn ein Nextcloud-Konto gemeint ist"
+    if re.search(r"(?i)\badministrator", src) and re.search(r"\bAdministrator(?:in(?:nen)?|en|s)?\b", tgt):
+        yield HINT, "wording", "\"Administration\" statt \"Administrator\"/\"Administratorin\", für ein Konto \"Administrationskonto\""
 
     if re.search(r"(?i)\bwirklich", tgt) and not re.search(r"(?i)\breally\b|\btruly\b|\breal\b", src):
         yield HINT, "filler", "\"wirklich\" nicht hinzufügen, wenn es nicht in der Quelle steht"
